@@ -6,7 +6,7 @@ require_once 'dbconnect.php';
 //an array to display response
 $response = array();
 
-//if it is an api call?  
+//if it is an api call
 if(isset($_GET['apicall'])){
 
 	switch($_GET['apicall']){
@@ -80,7 +80,7 @@ if(isset($_GET['apicall'])){
 			}
 			else{
  				//if the user not found 
-				$response = 'VALIDATION SUCCESSFULL - 401 UNAUTHORISED';
+				$response = 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
 			}
 		}
 		else{
