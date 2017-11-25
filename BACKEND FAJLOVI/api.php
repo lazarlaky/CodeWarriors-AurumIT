@@ -18,7 +18,8 @@ if(isset($_GET['apicall'])){
 
  			//getting values 
 			$kod = md5($_POST['kod']);
-			$androidID = $_POST['androidID']; 
+			$androidID = $_POST['androidID'];
+			$androidIDDB = $_POST['androidID']; 
 			
 			//checking if verification code exist in database
 			$stmt = $con->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ?");
@@ -33,7 +34,7 @@ if(isset($_GET['apicall'])){
 				if($androidID==0){
 					//if user is new and code is not used 
 					$stmt = $con->prepare("UPDATE verifikacijakorisnika SET androidID = ? WHERE kod = ?");
-					$stmt->bind_param("ss", $androidID, $kod);
+					$stmt->bind_param("ss", $androidIDDB, $kod);
 
  					//if android ID is successfully added to the database 
 					if($stmt->execute()){ 
