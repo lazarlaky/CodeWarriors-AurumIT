@@ -1,6 +1,6 @@
 <?php 
 
-//getting the database connection
+//getting the database conection
 require_once 'dbconnect.php';
 
 //an array to display response
@@ -21,7 +21,7 @@ if(isset($_GET['apicall'])){
 			$androidID = $_POST['androidID']; 
 			
 			//checking if verification code exist in database
-			$stmt = $conn->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ?");
+			$stmt = $con->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ?");
 			$stmt->bind_param("s", $kod);
 			$stmt->execute();
 			$stmt->store_result();
@@ -32,7 +32,7 @@ if(isset($_GET['apicall'])){
 			if($stmt->num_rows > 0){
 				if($androidID==0){
 					//if user is new and code is not used 
-					$stmt = $conn->prepare("UPDATE verifikacijakorisnika SET androidID = ? WHERE kod = ?");
+					$stmt = $con->prepare("UPDATE verifikacijakorisnika SET androidID = ? WHERE kod = ?");
 					$stmt->bind_param("ss", $androidID, $kod);
 
  					//if android ID is successfully added to the database 
@@ -67,7 +67,7 @@ if(isset($_GET['apicall'])){
 			$androidID = $_POST['androidID'];
 
  			//creating the query 
-			$stmt = $conn->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ? AND androidID = ?");
+			$stmt = $con->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ? AND androidID = ?");
 			$stmt->bind_param("ss",$kod, $androidID);
 
 			$stmt->execute();
@@ -116,3 +116,4 @@ function isTheseParametersAvailable($params){
  //return true if every param is available 
 	return true; 
 }
+?>
