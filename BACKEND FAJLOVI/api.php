@@ -80,7 +80,7 @@ if(isset($_GET['apicall'])){
 			}
 			else{
  				//if the user not found 
-				$response = 'VALIDATION SUCCESSFULL - 401 UNAUTHORISED';
+				$response = 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
 			}
 		}
 		else{
