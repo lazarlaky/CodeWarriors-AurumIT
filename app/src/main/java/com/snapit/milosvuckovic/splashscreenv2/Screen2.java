@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +31,8 @@ import static com.snapit.milosvuckovic.splashscreenv2.receiver.NetworkStateChang
 
 public class Screen2 extends AppCompatActivity {
     Button btn;
+
     EditText unesiKod;
-    private Context context= this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +90,7 @@ public class Screen2 extends AppCompatActivity {
                     int x=minUnos.length();
                     String srt = minUnos.substring(x-2,x);
                     String p1=minUnos.substring(0,x-2);
-                    String kodIzBaze = "73402717748611147895";
+                    String kodIzBaze = "195";
 
                     //Provera po modulu 97
                     BigInteger bd = new BigInteger(p1);
@@ -127,12 +126,6 @@ public class Screen2 extends AppCompatActivity {
                                 e.getMessage();
                             }
                             //kraj hesiranja
-
-                            //Uzimanje android ID-a
-                            String android_id = Settings.Secure.getString(context.getContentResolver(),
-                                    Settings.Secure.ANDROID_ID);
-
-
 
 
                         }
