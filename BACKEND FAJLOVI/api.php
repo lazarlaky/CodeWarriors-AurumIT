@@ -38,23 +38,23 @@ if(isset($_GET['apicall'])){
 
  					//if android ID is successfully added to the database 
 					if($stmt->execute()){ 
-						$response = '200 OK'; 
+						echo '200 OK'; 
 					}					
 				}
 				else{
 					//if there is already android ID paired with that ver. code
-					$response = 'Code already used! 401 UNAUTHORISED';
+					echo 'Code already used! 401 UNAUTHORISED';
 					$stmt->close();
 				}
 			}
 			//ver. code is not in the database
 			else{
-				$response = 'Code not found! 401 UNAUTHORISED';
+				echo 'Code not found! 401 UNAUTHORISED';
 				$stmt->close();
 			}
 		}
 		else{
-			$response = 'BAD PARAMETERS! 401 UNAUTHORISED'; 
+			echo 'BAD PARAMETERS! 401 UNAUTHORISED'; 
 		}
 
 		break; 
@@ -81,23 +81,23 @@ if(isset($_GET['apicall'])){
 			}
 			else{
  				//if the user not found 
-				$response = 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
+				echo 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
 			}
 		}
 		else{
-			$response = 'BAD PARAMETERS! 401 UNAUTHORISED'; 
+			echo 'BAD PARAMETERS! 401 UNAUTHORISED'; 
 		}
 
 		break; 
 
 		default: 
-		$response = 'Invalid Operation Called - 401 UNAUTHORISED';
+		echo 'Invalid Operation Called - 401 UNAUTHORISED';
 	}
 
 }
 else{
  //if it is not api call 
-	$response = 'Invalid API Call';
+	echo 'Invalid API Call';
 }
 
  //displaying the response in json structure 
