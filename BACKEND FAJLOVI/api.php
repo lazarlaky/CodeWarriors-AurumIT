@@ -6,7 +6,7 @@ require_once 'dbconnect.php';
 //an array to display response
 $response = array();
 
-//if it is an api call?  
+//if it is an api call
 if(isset($_GET['apicall'])){
 
 	switch($_GET['apicall']){
@@ -18,7 +18,8 @@ if(isset($_GET['apicall'])){
 
  			//getting values 
 			$kod = md5($_POST['kod']);
-			$androidID = $_POST['androidID']; 
+			$androidID = $_POST['androidID'];
+			$androidIDDB = $_POST['androidID']; 
 			
 			//checking if verification code exist in database
 			$stmt = $con->prepare("SELECT androidID FROM verifikacijakorisnika WHERE kod = ?");
@@ -33,27 +34,27 @@ if(isset($_GET['apicall'])){
 				if($androidID==0){
 					//if user is new and code is not used 
 					$stmt = $con->prepare("UPDATE verifikacijakorisnika SET androidID = ? WHERE kod = ?");
-					$stmt->bind_param("ss", $androidID, $kod);
+					$stmt->bind_param("ss", $androidIDDB, $kod);
 
  					//if android ID is successfully added to the database 
 					if($stmt->execute()){ 
-						$response = '200 OK'; 
+						echo '200 OK'; 
 					}					
 				}
 				else{
 					//if there is already android ID paired with that ver. code
-					$response = 'Code already used! 401 UNAUTHORISED';
+					echo 'Code already used! 401 UNAUTHORISED';
 					$stmt->close();
 				}
 			}
 			//ver. code is not in the database
 			else{
-				$response = 'Code not found! 401 UNAUTHORISED';
+				echo 'Code not found! 401 UNAUTHORISED';
 				$stmt->close();
 			}
 		}
 		else{
-			$response = 'BAD PARAMETERS! 401 UNAUTHORISED'; 
+			echo 'BAD PARAMETERS! 401 UNAUTHORISED'; 
 		}
 
 		break; 
@@ -80,23 +81,23 @@ if(isset($_GET['apicall'])){
 			}
 			else{
  				//if the user not found 
-				$response = 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
+				echo 'VALIDATION UNSUCCESSFULL - 401 UNAUTHORISED';
 			}
 		}
 		else{
-			$response = 'BAD PARAMETERS! 401 UNAUTHORISED'; 
+			echo 'BAD PARAMETERS! 401 UNAUTHORISED'; 
 		}
 
 		break; 
 
 		default: 
-		$response = 'Invalid Operation Called - 401 UNAUTHORISED';
+		echo 'Invalid Operation Called - 401 UNAUTHORISED';
 	}
 
 }
 else{
  //if it is not api call 
-	$response = 'Invalid API Call';
+	echo 'Invalid API Call';
 }
 
  //displaying the response in json structure 

@@ -1,10 +1,8 @@
 <?php
-
-
 // database connection variables
 $servername = "localhost";
-$username = "admin";
-$password = "password";
+$username = "root";
+$password = "";
 $database = "snapit";
 
 
